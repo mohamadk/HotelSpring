@@ -7,11 +7,10 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class JwtAuthenticationTokenFilter : AbstractAuthenticationProcessingFilter("/rest/**") {
+open class JwtAuthenticationTokenFilter : AbstractAuthenticationProcessingFilter("/rest/**") {
 
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
-        val token: String? = request!!.getHeader("Authorization")
-
+        val token: String? = request!!.getHeader(TOKEN_HEADER_KEY)
 
         if (token == null || !token.startsWith(TOKEN_PREFIX)) {
                 throw RuntimeException("Jwt token Is missing")
@@ -31,6 +30,7 @@ class JwtAuthenticationTokenFilter : AbstractAuthenticationProcessingFilter("/re
     }
 
     companion object {
-        val TOKEN_PREFIX = "Bearer "
+            val TOKEN_PREFIX = "Bearer "
+            val TOKEN_HEADER_KEY="Authorization"
     }
 }

@@ -5,7 +5,10 @@ import com.mohamadk.hotelspring.security.JwtAuthenticationTokenFilter.Companion.
 import com.mohamadk.hotelspring.security.JwtValidator.Companion.SECRET_KEY
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
+import io.jsonwebtoken.io.Decoders
+import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Component
+import java.security.Key
 
 @Component
 class JwtGenerator {
@@ -17,9 +20,12 @@ class JwtGenerator {
         claim.put("userId", "${user.id}")
         claim.put("role", user.role)
 
+        val bytes=Decoders.BASE64.decode(SECRET_KEY)
+        val key= Keys.hmacShaKeyFor(bytes)
+
         return "$TOKEN_PREFIX${Jwts.builder()
                 .setClaims(claim)
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .signWith(key)
                 .compact()
         }"
 

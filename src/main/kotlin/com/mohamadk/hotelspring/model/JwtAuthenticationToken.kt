@@ -5,8 +5,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 class JwtAuthenticationToken (var token:String,principal:Any?=null,credential:Any?=null)
     : UsernamePasswordAuthenticationToken(principal,credential) {
 
-
-
     override fun getCredentials(): Any?{
         return null
     }
