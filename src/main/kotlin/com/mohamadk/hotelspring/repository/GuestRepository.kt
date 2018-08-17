@@ -1,6 +1,7 @@
 package com.mohamadk.hotelspring.repository
 
 import com.mohamadk.hotelspring.model.Guest
+import com.mohamadk.hotelspring.model.Guest.Companion.CHECK_IN_DATE_COLUMN
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
@@ -12,7 +13,7 @@ import java.util.*
 @Repository
 interface GuestRepository : JpaRepository<Guest, Long> {
 
-    @Query("select * from Guests g where g.date>=:fromDate and g.date<=:toDate ", nativeQuery = true)
+    @Query("select * from Guests g where g.$CHECK_IN_DATE_COLUMN>=:fromDate and g.$CHECK_IN_DATE_COLUMN<=:toDate ", nativeQuery = true)
     fun findInPeriod(
             @Param("fromDate") fromDate: Date
             , @Param("toDate") toDate: Date
