@@ -2,6 +2,7 @@ package com.mohamadk.hotelspring.controller
 
 import com.mohamadk.hotelspring.model.Staff
 import com.mohamadk.hotelspring.repository.StaffRepository
+import org.h2.message.DbException
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.PostMapping
@@ -19,10 +20,12 @@ class StaffSignUpController {
     @PostMapping("/signUp")
     fun generate(@RequestBody staff: Staff): Boolean {
         logger.debug("staff=${staff}")
-
-        staffRepository.save(staff)
-
-        return true
+        try {
+            staffRepository.save(staff)
+            return true
+        }catch (e: Exception){
+            throw UserAlreadyExistException("user already exist!",e)
+        }
     }
 
 }
