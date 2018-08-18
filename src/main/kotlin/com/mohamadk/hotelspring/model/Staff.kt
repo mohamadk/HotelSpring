@@ -7,13 +7,13 @@ import javax.validation.constraints.Size
 @Entity
 @Table(name = "Staffs")
 data class Staff(
-        @Column(name="USERNAME",length = 50, unique = true)
+        @Column(name = "USERNAME", length = 50, unique = true)
         @NotNull
         @Size(min = 4, max = 50)
         val userName: String = "username"
         ,
         @NotNull
-        @Column(name="PASSWORD")
+        @Column(name = "PASSWORD")
         @Size(min = 4, max = 50)
         val password: String? = null
         ,
@@ -23,10 +23,9 @@ data class Staff(
         @Size(max = 50)
         val lastName: String? = null
 
-,
+        ,
         @Size(max = 50)
         val role: String? = null
-
 
 
 ) {

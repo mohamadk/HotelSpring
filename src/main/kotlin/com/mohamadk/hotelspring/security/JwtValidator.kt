@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class JwtValidator {
-    val logger=LoggerFactory.getLogger(JwtValidator::class.java)
+    val logger = LoggerFactory.getLogger(JwtValidator::class.java)
 
     fun validate(token: String): JwtUser {
 
@@ -24,7 +24,7 @@ class JwtValidator {
             )
 
         } catch (e: Exception) {
-            logger.info("Jwt token is incorrect",e)
+            logger.info("Jwt token is incorrect", e)
             throw RuntimeException("Jwt token is incorrect")
         }
     }

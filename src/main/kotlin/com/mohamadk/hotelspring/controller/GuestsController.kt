@@ -2,9 +2,7 @@ package com.mohamadk.hotelspring.controller
 
 import com.mohamadk.hotelspring.model.Guest
 import com.mohamadk.hotelspring.repository.GuestRepository
-import com.mohamadk.hotelspring.utils.add
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.util.Streamable
 import org.springframework.web.bind.annotation.GetMapping

@@ -13,7 +13,7 @@ open class JwtAuthenticationTokenFilter : AbstractAuthenticationProcessingFilter
         val token: String? = request!!.getHeader(TOKEN_HEADER_KEY)
 
         if (token == null || !token.startsWith(TOKEN_PREFIX)) {
-                throw RuntimeException("Jwt token Is missing")
+            throw RuntimeException("Jwt token Is missing")
         }
 
         val authenticationToken = token.substring(TOKEN_PREFIX.length)
@@ -30,7 +30,7 @@ open class JwtAuthenticationTokenFilter : AbstractAuthenticationProcessingFilter
     }
 
     companion object {
-            val TOKEN_PREFIX = "Bearer "
-            val TOKEN_HEADER_KEY="Authorization"
+        val TOKEN_PREFIX = "Bearer "
+        val TOKEN_HEADER_KEY = "Authorization"
     }
 }

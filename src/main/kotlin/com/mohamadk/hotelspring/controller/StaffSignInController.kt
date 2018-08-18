@@ -1,7 +1,6 @@
 package com.mohamadk.hotelspring.controller
 
 import com.mohamadk.hotelspring.model.JwtAuthenticationToken
-import com.mohamadk.hotelspring.model.JwtUser
 import com.mohamadk.hotelspring.model.Staff
 import com.mohamadk.hotelspring.security.JwtGenerator
 import org.slf4j.LoggerFactory
@@ -9,19 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.DisabledException
-
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class StaffSigninController{
+class StaffSignInController {
 
-    val logger= LoggerFactory.getLogger(HelloController::class.java)
-
-    @Autowired
-    lateinit var authenticationManager:AuthenticationManager
+    val logger = LoggerFactory.getLogger(HelloController::class.java)
 
     @Autowired
-    lateinit var jwtGenerator:JwtGenerator
+    lateinit var authenticationManager: AuthenticationManager
+
+    @Autowired
+    lateinit var jwtGenerator: JwtGenerator
 
     @PostMapping("/signIn")
     fun generate(@RequestBody staff: Staff): String {

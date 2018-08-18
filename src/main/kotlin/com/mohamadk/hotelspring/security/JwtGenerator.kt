@@ -18,8 +18,8 @@ class JwtGenerator {
         claim.put("userId", "${staff.id}")
         claim.put("role", staff.role)
 
-        val bytes=Decoders.BASE64.decode(SECRET_KEY)
-        val key= Keys.hmacShaKeyFor(bytes)
+        val bytes = Decoders.BASE64.decode(SECRET_KEY)
+        val key = Keys.hmacShaKeyFor(bytes)
 
         return "$TOKEN_PREFIX${Jwts.builder()
                 .setClaims(claim)
