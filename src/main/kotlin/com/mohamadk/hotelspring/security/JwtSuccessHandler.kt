@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse
 class JwtSuccessHandler : AuthenticationSuccessHandler {
     val logger = LoggerFactory.getLogger(JwtSuccessHandler::class.java)
     override fun onAuthenticationSuccess(request: HttpServletRequest?, response: HttpServletResponse?, authentication: Authentication?) {
-
         logger.info("Successful Authentication.")
     }
 

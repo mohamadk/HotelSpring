@@ -1,6 +1,6 @@
 package com.mohamadk.hotelspring.security
 
-import com.mohamadk.hotelspring.controller.UserNotFoundException
+import com.mohamadk.hotelspring.exceptions.UserNotFoundException
 import com.mohamadk.hotelspring.model.JwtAuthenticationToken
 import com.mohamadk.hotelspring.model.JwtUser
 import com.mohamadk.hotelspring.model.JwtUserDetail

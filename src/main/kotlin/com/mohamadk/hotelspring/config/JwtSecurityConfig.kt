@@ -47,6 +47,7 @@ class JwtSecurityConfig : WebSecurityConfigurerAdapter() {
 
 
         http!!.csrf().disable()
+                //authenticate all requests in rest path
                 .authorizeRequests().antMatchers("**/rest/**").authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)

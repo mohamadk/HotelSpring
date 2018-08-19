@@ -1,5 +1,6 @@
 package com.mohamadk.hotelspring.controller
 
+import com.mohamadk.hotelspring.exceptions.AuthenticationException
 import com.mohamadk.hotelspring.model.JwtAuthenticationToken
 import com.mohamadk.hotelspring.model.Staff
 import com.mohamadk.hotelspring.security.JwtGenerator
