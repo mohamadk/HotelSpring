@@ -1,13 +1,12 @@
 
-
 startJar() {
-    java -jar hotel-spring-0.0.1-SNAPSHOT.jar
+    nohup java -jar 'hotel-spring-0.0.1-SNAPSHOT.jar' &
     echo -n "Started "
 }
 
 checkIn() {
     curl -d '{"userName":"mww1","firstName":"mohamad","lastName":"khaleghy"}' -X POST -H "Content-Type: application/json" http://localhost:8080/checkIn
-	echo -n '{"userName":"mww1","firstName":"mohamad","lastName":"khaleghy"}'
+    echo ""\n {"userName":"mww1","firstName":"mohamad","lastName":"khaleghy"}""
 }
 
 signUp() {
@@ -39,9 +38,25 @@ checkOut() {
 }
 
 
-
-
-
-
-
-
+if [ "$1" = "startJar" ]
+then
+    startJar
+elif [ "$1" = "checkIn" ]
+then
+    checkIn
+	elif [ "$1" = "signUp" ]
+then
+    signUp
+	elif [ "$1" = "signIn" ]
+then
+    signIn
+	elif [ "$1" = "guests" ]
+then
+    guests
+else
+    echo "springHotel startJar"
+    echo "springHotel checkIn"
+    echo "springHotel signUp"
+    echo "springHotel signIn"
+    echo "springHotel guests"
+fi
