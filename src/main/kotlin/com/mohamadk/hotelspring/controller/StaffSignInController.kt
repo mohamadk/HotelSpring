@@ -1,6 +1,6 @@
 package com.mohamadk.hotelspring.controller
 
-import com.mohamadk.hotelspring.exceptions.AuthenticationException
+import com.mohamadk.hotelspring.exceptions.AuthorizationException
 import com.mohamadk.hotelspring.model.JwtAuthenticationToken
 import com.mohamadk.hotelspring.model.Staff
 import com.mohamadk.hotelspring.security.JwtGenerator
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class StaffSignInController {
 
-    val logger = LoggerFactory.getLogger(HelloController::class.java)
+    val logger = LoggerFactory.getLogger(StaffSignInController::class.java)
 
     @Autowired
     lateinit var authenticationManager: AuthenticationManager
@@ -37,9 +37,9 @@ class StaffSignInController {
         try {
             authenticationManager.authenticate(JwtAuthenticationToken(principal = staff.userName, credential = staff.password))
         } catch (e: DisabledException) {
-            throw AuthenticationException("User is disabled!", e)
+            throw AuthorizationException(AuthorizationException.USER_IS_DISABLED, e)
         } catch (e: BadCredentialsException) {
-            throw AuthenticationException("Bad credentials!", e)
+            throw AuthorizationException(AuthorizationException.BAD_CREDENTIAL, e)
         }
     }
 

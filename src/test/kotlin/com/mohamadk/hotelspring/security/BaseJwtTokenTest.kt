@@ -1,6 +1,7 @@
 package com.mohamadk.hotelspring.security
 
 import com.mohamadk.hotelspring.model.JwtUser
+import com.mohamadk.hotelspring.model.Staff
 import org.junit.Before
 import org.mockito.MockitoAnnotations
 
@@ -18,6 +19,12 @@ open class BaseJwtTokenTest {
 
     internal fun createJwtUser(): JwtUser {
         return JwtUser(TEST_USERNAME, TEST_ID, TEST_ROLE)
+    }
+    internal fun createStaff(): Staff {
+        val staff=Staff(userName = TEST_USERNAME,role = TEST_ROLE)
+        staff.id=TEST_ID
+
+        return staff
     }
 
     internal fun removePrefix(token: String): String {

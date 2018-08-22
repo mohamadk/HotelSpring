@@ -1,7 +1,9 @@
 package com.mohamadk.hotelspring.security
 
+import com.mohamadk.hotelspring.exceptions.AuthenticationException
 import com.mohamadk.hotelspring.model.JwtAuthenticationToken
 import org.springframework.security.core.Authentication
+
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
@@ -13,7 +15,7 @@ open class JwtAuthenticationTokenFilter : AbstractAuthenticationProcessingFilter
         val token: String? = request!!.getHeader(TOKEN_HEADER_KEY)
 
         if (token == null || !token.startsWith(TOKEN_PREFIX)) {
-            throw RuntimeException("Jwt token Is missing")
+            throw AuthenticationException(AuthenticationException.TOKEN_IS_MISSING)
         }
 
         val authenticationToken = token.substring(TOKEN_PREFIX.length)

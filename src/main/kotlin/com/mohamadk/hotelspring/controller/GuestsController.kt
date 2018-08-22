@@ -2,6 +2,7 @@ package com.mohamadk.hotelspring.controller
 
 import com.mohamadk.hotelspring.model.Guest
 import com.mohamadk.hotelspring.repository.GuestRepository
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.util.Streamable
@@ -12,6 +13,9 @@ import java.util.*
 
 @RestController
 class GuestsController {
+
+    val logger = LoggerFactory.getLogger(GuestsController::class.java)
+
     @Autowired
     lateinit var guestRepository: GuestRepository
 
@@ -22,14 +26,13 @@ class GuestsController {
             , @RequestHeader(name = "fromDate", required = false) fromDate: Long? = null
             , @RequestHeader(name = "toDate", required = false) toDate: Long? = null
     ): Streamable<Guest> {
-
-        if (fromDate == null) {
-            return guestRepository.findAll(PageRequest.of(page, pageSize))
+        logger.debug("guests pageSize=$pageSize page=$page fromDate=${Date(fromDate?:0)} toDate=${Date(toDate?:0)}")
+        return if (fromDate == null) {
+            guestRepository.findAll(PageRequest.of(page, pageSize))
         } else {
             val endPeriod = toDate ?: Date().time
-            return guestRepository.findInPeriod(Date(fromDate), Date(endPeriod), PageRequest.of(page, pageSize))
+            guestRepository.findInPeriod(Date(fromDate), Date(endPeriod), PageRequest.of(page, pageSize))
         }
-
     }
 
 

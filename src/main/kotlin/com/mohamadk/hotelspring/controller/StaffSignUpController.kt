@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class StaffSignUpController {
 
-    val logger = LoggerFactory.getLogger(HelloController::class.java)
+    val logger = LoggerFactory.getLogger(StaffSignUpController::class.java)
 
     @Autowired
     lateinit var staffRepository: StaffRepository

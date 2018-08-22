@@ -33,6 +33,6 @@ data class Staff(
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "staff_seq")
     @SequenceGenerator(name = "staff_seq", sequenceName = "staff_seq", allocationSize = 1)
-    val id: Long = 0
+    var id: Long = 0
 
 }
