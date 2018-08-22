@@ -45,7 +45,6 @@ class JwtSecurityConfig : WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity?) {
 
-
         http!!.csrf().disable()
                 //authenticate all requests in rest path
                 .authorizeRequests().antMatchers("**/rest/**").authenticated()

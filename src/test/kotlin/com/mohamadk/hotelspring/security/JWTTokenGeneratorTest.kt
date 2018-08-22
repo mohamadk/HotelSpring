@@ -13,10 +13,8 @@ class JWTTokenGeneratorTest : BaseJwtTokenTest() {
     @Test
     @Throws(Exception::class)
     fun generateTokenTest() {
-
-//        val token = jwtGenerator!!.generate(createJwtUser())
-
-//        assertEquals(token, TEST_TOKEN)
+        val token = jwtGenerator!!.generate(createStaff())
+        assertEquals(token, TEST_TOKEN)
     }
 
 }
