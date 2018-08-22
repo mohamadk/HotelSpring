@@ -1,7 +1,8 @@
 package com.mohamadk.hotelspring.controllers
 
-import com.mohamadk.hotelspring.exceptions.AuthenticationException
 import com.mohamadk.hotelspring.controller.CheckOutController
+import com.mohamadk.hotelspring.exceptions.AuthenticationException
+import com.mohamadk.hotelspring.security.JwtAuthenticationTokenFilter.Companion.TOKEN_HEADER_KEY
 import org.assertj.core.api.Assertions
 import org.hamcrest.CoreMatchers
 import org.junit.Test
@@ -31,7 +32,7 @@ class CheckOutControllerTest : CheckInControllerTest() {
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/rest/checkOut/1")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .header("Authorization", TEST_TOKEN)
+                        .header(TOKEN_HEADER_KEY, TEST_TOKEN)
 
         )
                 .andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk)
@@ -47,10 +48,23 @@ class CheckOutControllerTest : CheckInControllerTest() {
                             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
 
             )
-                    .andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk)
-                    .andExpect(MockMvcResultMatchers.content().string(CoreMatchers.containsString("false")))
-        }.hasCauseExactlyInstanceOf(AuthenticationException::class.java)
+
+        }.isInstanceOf(AuthenticationException::class.java)
                 .hasMessage(AuthenticationException.TOKEN_IS_MISSING)
+
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun withWrongAuthorizationToken() {
+        Assertions.assertThatThrownBy {
+            mockMvc.perform(
+                    MockMvcRequestBuilders.post("/rest/checkOut/1")
+                            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                            .header(TOKEN_HEADER_KEY, TEST_TOKEN + "SabotageText")
+            )
+        }.isInstanceOf(AuthenticationException::class.java)
+                .hasMessage(AuthenticationException.TOKEN_IS_INCORRECT)
 
     }
 

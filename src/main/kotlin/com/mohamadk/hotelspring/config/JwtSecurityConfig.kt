@@ -53,7 +53,7 @@ class JwtSecurityConfig : WebSecurityConfigurerAdapter() {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-        http!!.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter::class.java)
+        http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter::class.java)
 
         http.headers().cacheControl()
 

@@ -24,15 +24,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 @RunWith(SpringRunner::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-open class CheckInControllerTest {
+class CheckInControllerTest {
     @Autowired
     lateinit var controller: CheckInController
-
-    @LocalServerPort
-    private var port: Int = 8080
-
-    @Autowired
-    lateinit var restTemplate: TestRestTemplate
 
     @Autowired
     lateinit var mockMvc: MockMvc

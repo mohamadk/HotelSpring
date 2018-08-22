@@ -1,9 +1,11 @@
 package com.mohamadk.hotelspring.security
 
+import com.mohamadk.hotelspring.exceptions.AuthenticationException
 import com.mohamadk.hotelspring.model.JwtUser
 import io.jsonwebtoken.Jwts
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
+
 
 @Component
 class JwtValidator {
@@ -25,7 +27,7 @@ class JwtValidator {
 
         } catch (e: Exception) {
             logger.info("Jwt token is incorrect", e)
-            throw RuntimeException("Jwt token is incorrect")
+            throw AuthenticationException(AuthenticationException.TOKEN_IS_INCORRECT)
         }
     }
 
