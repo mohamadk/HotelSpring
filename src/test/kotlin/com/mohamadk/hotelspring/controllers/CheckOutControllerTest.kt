@@ -21,13 +21,15 @@ class CheckOutControllerTest : CheckInControllerTest() {
 
     @Test
     @Throws(Exception::class)
-    fun checkOutContexLoads() {
+    fun checkOutContextLoads() {
         Assertions.assertThat(checkOutController).isNotNull
     }
 
     @Test
     @Throws(Exception::class)
     fun wellInput() {
+
+        checkIn(mockMvc)
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/rest/checkOut/1")
@@ -36,7 +38,7 @@ class CheckOutControllerTest : CheckInControllerTest() {
 
         )
                 .andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk)
-                .andExpect(MockMvcResultMatchers.content().string(CoreMatchers.containsString("false")))
+                .andExpect(MockMvcResultMatchers.content().string(CoreMatchers.containsString("true")))
     }
 
     @Test
