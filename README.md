@@ -24,7 +24,7 @@ Staff
 }
 ```
 
-#Controllers      
+# Controllers      
 localhost:8080/checkIn     
 Post     
 Body: guest json     
@@ -52,3 +52,23 @@ fromDate
 localhost:8080/rest/checkOut/{guestId}     
 Post     
 url param Guest Id to check out      
+
+# output file
+In output directory you can find runnable jar of project with a shell to test it.     
+it has these commands 
+
+```
+"springHotel startJar"
+"springHotel checkIn"
+"springHotel checkOut"
+"springHotel signUp"
+"springHotel signIn"
+"springHotel guests"
+```
+* startJar for running the jar with nohup      
+* checkIn for check In with sample guest info      
+* signUp for signUp as sample staff user     
+* signIn for signIn as sample staff user and get Athentication token      
+* guests for getting list of guests in a period of time     
+* checkOut for check out a guest.
+
