@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers.print
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import java.util.*
 
 
 @RunWith(SpringRunner::class)
@@ -46,7 +47,7 @@ open class CheckInControllerTest {
 
     companion object {
         fun createGuest(): Guest {
-            return Guest("mk", "mohamad", "khaleghy")
+            return Guest("mk${Random().nextInt()}", "mohamad", "khaleghy")
         }
 
         fun checkIn(mockMvc: MockMvc): ResultActions {

@@ -58,6 +58,8 @@ dependencies {
     runtime 'io.jsonwebtoken:jjwt-impl:0.10.5',
             'io.jsonwebtoken:jjwt-jackson:0.10.5'
 
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 }
